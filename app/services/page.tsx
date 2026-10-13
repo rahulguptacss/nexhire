@@ -1,8 +1,6 @@
 import React from 'react';
 import Breadcrumb from '@/components/sections/Breadcrumb';
 import Services from '@/components/sections/Services';
-import WhyChooseUs from '@/components/sections/WhyChooseUs';
-import Testimonials from '@/components/sections/Testimonials';
 import { pages } from '@/components/types';
 import type { Metadata } from 'next';
 
@@ -16,8 +14,6 @@ export default function ServicesPage() {
     <main className="min-h-screen">
       <Breadcrumb title1="Our" title2="Services" breadcrumb="Our Services" />
       <Services />
-      <WhyChooseUs bgColor="bg-white" />
-      <Testimonials />
     </main>
   );
 }

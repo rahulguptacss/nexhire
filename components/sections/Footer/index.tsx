@@ -133,13 +133,13 @@ export default function Footer() {
                   <div className="w-[46px] h-[46px] rounded-full bg-white/5 flex items-center justify-center shrink-0 group-hover:bg-[#fd5b08] transition-colors">
                     <Phone size={22} className="text-[#fd5b08] group-hover:text-white transition-colors" fill="currentColor" strokeWidth={0} />
                   </div>
-                  <span>{contact.phone}</span>
+                  <a href={`tel:${contact.phone.replace(/[^\d+]/g, '')}`} className="hover:text-white transition-colors">{contact.phone}</a>
                 </li>
                 <li className="flex gap-4 items-center text-gray-300 text-sm group">
                   <div className="w-[46px] h-[46px] rounded-full bg-white/5 flex items-center justify-center shrink-0 group-hover:bg-[#fd5b08] transition-colors">
                     <FaEnvelope size={22} className="text-[#fd5b08] group-hover:text-white transition-colors" />
                   </div>
-                  <span>{contact.email}</span>
+                  <a href={`mailto:${contact.email}`} className="hover:text-white transition-colors">{contact.email}</a>
                 </li>
                 <li className="flex gap-4 items-center text-gray-300 text-sm group">
                   <div className="w-[46px] h-[46px] rounded-full bg-white/5 flex items-center justify-center shrink-0 group-hover:bg-[#fd5b08] transition-colors">

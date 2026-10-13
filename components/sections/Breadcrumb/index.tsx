@@ -13,9 +13,9 @@ interface BreadcrumbProps {
 
 export default function Breadcrumb({ title1, title2, breadcrumb, parents = [] }: BreadcrumbProps) {
   return (
-    <section className="bg-[#041e42] py-28 text-center relative z-10 flex flex-col justify-center min-h-[300px]">
+    <section className="bg-[#041e42] py-12 text-center relative z-10 flex flex-col justify-center min-h-[180px] md:min-h-[240px] md:py-20 lg:min-h-[300px] lg:py-28">
       <div className="container mx-auto px-4">
-        <h1 className="text-4xl md:text-5xl lg:text-[56px] font-black text-white mb-4 tracking-tight">
+        <h1 className="text-3xl md:text-5xl lg:text-[56px] font-black text-white mb-3 md:mb-4 tracking-tight">
           {title1} <span className="text-[#fd5b08]">{title2}</span>
         </h1>
         <div className="text-[13px] text-white font-bold flex items-center justify-center gap-2 tracking-wide uppercase">

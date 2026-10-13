@@ -1,7 +1,6 @@
 import React from 'react';
 import Breadcrumb from '@/components/sections/Breadcrumb';
 import Faq from '@/components/sections/Faq';
-import Support from '@/components/sections/Support';
 import { pages } from '@/components/types';
 import type { Metadata } from 'next';
 
@@ -15,7 +14,6 @@ export default function FaqPage() {
     <main className="min-h-screen bg-white">
       <Breadcrumb title1="Help &" title2="Support" breadcrumb="FAQ" />
       <Faq />
-      <Support />
     </main>
   );
 }

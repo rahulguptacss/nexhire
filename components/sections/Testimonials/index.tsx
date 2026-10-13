@@ -2,7 +2,7 @@
 
 import React, { useState, useEffect, useRef } from 'react';
 
-import { ArrowRight, Star } from 'lucide-react';
+import { Star } from 'lucide-react';
 import { sections } from '../../types';
 import { motion, AnimatePresence, useInView } from 'framer-motion';
 
@@ -46,7 +46,7 @@ function AnimatedCounter({ value }: { value: string }) {
 }
 
 export default function Testimonials() {
-  const { subtitle, title_line1, title_highlight, button, reviews } = sections.testimonials;
+  const { subtitle, title_line1, title_highlight, reviews } = sections.testimonials;
   const { items: statItems } = sections.stats;
 
   const [currentSlide, setCurrentSlide] = useState(0);
@@ -81,18 +81,9 @@ export default function Testimonials() {
               <div className="w-[6px] h-[6px] rounded-full bg-[#fd5b08]"></div>
               <span className="text-gray-300 font-bold uppercase tracking-widest text-[13px]">{subtitle}</span>
             </div>
-            <h2 className="text-[34px] md:text-[46px] font-black leading-[1.1] mb-8 text-white max-w-xl tracking-tight">
+            <h2 className="text-[34px] md:text-[46px] font-black leading-[1.1] text-white max-w-xl tracking-tight">
               {title_line1} <span className="text-[#fd5b08]">{title_highlight}</span>
             </h2>
-            
-            <div>
-              <div className="inline-flex items-center gap-3 bg-[#fd5b08] text-white px-5 py-2.5 rounded-full font-bold transition-colors">
-                <span className="pl-2">{button.text}</span>
-                <div className="w-8 h-8 bg-white rounded-full flex items-center justify-center text-[#fd5b08]">
-                  <ArrowRight size={18} strokeWidth={2.5} />
-                </div>
-              </div>
-            </div>
           </motion.div>
 
           {/* Right Side: Testimonial & Profile */}

@@ -89,21 +89,6 @@ export default function Services({ limit }: { limit?: number } = {}) {
           ))}
         </div>
 
-        {/* Bottom Banner - Only visible when limit is passed (e.g. homepage) */}
-        {limit && (
-          <motion.div
-            initial={{ opacity: 0, y: 20 }}
-            whileInView={{ opacity: 1, y: 0 }}
-            viewport={{ once: true }}
-            transition={{ duration: 0.5, delay: 0.2 }}
-            className="mt-14 flex justify-center items-center"
-          >
-            <div className="flex items-center gap-3 text-[#5e6a7c] text-[15px] sm:text-[16px] font-medium">
-              <span className="bg-[#fd5b08] text-white px-3 py-1 rounded-[6px] font-bold text-[14px]">Free</span>
-              <span>Let's build success together - <Link href="/contact" className="text-[#fd5b08] font-bold underline hover:no-underline underline-offset-4 decoration-2">Get In Touch Today!</Link></span>
-            </div>
-          </motion.div>
-        )}
       </div>
     </section>
   );

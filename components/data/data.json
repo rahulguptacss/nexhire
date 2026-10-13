@@ -44,8 +44,8 @@
           "href": "/services"
         },
         {
-          "name": "Jobs",
-          "href": "/jobs"
+          "name": "Career",
+          "href": "/career"
         },
         {
           "name": "Our Team",
@@ -99,8 +99,8 @@
           "href": "/about"
         },
         {
-          "name": "Jobs",
-          "href": "/jobs"
+          "name": "Career",
+          "href": "/career"
         },
         {
           "name": "Blog",
@@ -441,7 +441,7 @@
               ],
               "button": {
                 "text": "Hire Talent Today",
-                "href": "/hire"
+                "href": "/career"
               },
               "image": "/img/hero.webp"
             },

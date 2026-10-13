@@ -13,7 +13,7 @@ export default function BlogPage() {
   return (
     <main className="min-h-screen bg-white">
       <Breadcrumb title1="Our" title2="Blog" breadcrumb="Blog" />
-      <Blog />
+      <Blog showButton={false} perPage={4} variant="page" />
     </main>
   );
 }

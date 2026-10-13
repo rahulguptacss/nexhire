@@ -1,18 +1,14 @@
 "use client";
 
 import React, { useState } from 'react';
-import Link from 'next/link';
 import { motion, AnimatePresence, MotionConfig, type Variants } from 'framer-motion';
 import {
-  User, Phone, Mail, MessageSquare, ArrowRight, MapPin, MessageCircle,
-  Clock, Headset, FileText, CheckCircle2, type LucideIcon,
+  User, Phone, Mail, MessageSquare, ArrowRight, MapPin, CheckCircle2, type LucideIcon,
 } from 'lucide-react';
 import { sections } from '../../types';
 
 interface InfoItem { icon: string; title: string; text: string; href: string; wide?: boolean }
-interface CardItem { icon: string; title: string; text?: string; lines?: string[]; link?: { text: string; href: string } }
-
-const icons: Record<string, LucideIcon> = { Mail, Phone, MapPin, MessageCircle, Clock, Headset, FileText };
+const icons: Record<string, LucideIcon> = { Mail, Phone, MapPin };
 
 const ease = [0.22, 1, 0.36, 1] as const;
 
@@ -51,7 +47,7 @@ function Field({
 }
 
 export default function Contact() {
-  const { subtitle, title_line1, title_highlight, description, form, map, info, cards } = (sections as any).contact;
+  const { subtitle, title_line1, title_highlight, description, form, map, info } = (sections as any).contact;
   const [sent, setSent] = useState(false);
 
   const onSubmit = (e: React.FormEvent<HTMLFormElement>) => {
@@ -212,46 +208,6 @@ export default function Contact() {
             </motion.div>
           </div>
 
-          {/* Bottom cards */}
-          <motion.div
-            variants={stagger}
-            initial="hidden"
-            whileInView="show"
-            viewport={{ once: true, amount: 0.2 }}
-            className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-4 mt-6"
-          >
-            {(cards as CardItem[]).map((card) => {
-              const Icon = icons[card.icon] ?? MessageCircle;
-              return (
-                <motion.div
-                  key={card.title}
-                  variants={fadeUp}
-                  whileHover={{ y: -6 }}
-                  className="group flex gap-4 bg-white rounded-[14px] border border-[#eef1f5] shadow-[0_6px_20px_rgba(4,30,66,0.05)] hover:shadow-[0_15px_35px_rgba(4,30,66,0.1)] hover:border-[#fd5b08]/30 transition-[box-shadow,border-color] p-5"
-                >
-                  <span className="shrink-0 w-12 h-12 rounded-full bg-[#fff0e6] text-[#fd5b08] flex items-center justify-center transition-colors duration-300 group-hover:bg-[#fd5b08] group-hover:text-white">
-                    <Icon size={20} strokeWidth={2} />
-                  </span>
-                  <div className="min-w-0">
-                    <h3 className="text-[#041e42] text-[15px] font-bold mb-1">{card.title}</h3>
-                    {card.text && <p className="text-[#5e6a7c] text-[13px] leading-relaxed mb-2">{card.text}</p>}
-                    {card.lines?.map((line) => (
-                      <p key={line} className="text-[#5e6a7c] text-[13px] leading-relaxed">{line}</p>
-                    ))}
-                    {card.link && (
-                      <Link
-                        href={card.link.href}
-                        className="inline-flex items-center gap-1.5 text-[#fd5b08] text-[13px] font-bold"
-                      >
-                        {card.link.text}
-                        <ArrowRight size={14} className="transition-transform group-hover:translate-x-1" />
-                      </Link>
-                    )}
-                  </div>
-                </motion.div>
-              );
-            })}
-          </motion.div>
         </div>
       </section>
     </MotionConfig>

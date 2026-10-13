@@ -1,13 +1,12 @@
 "use client";
 
 import React from 'react';
-import { Target, Eye, ArrowRight } from 'lucide-react';
+import { Target, Eye } from 'lucide-react';
 import { sections } from '../../types';
-import Link from 'next/link';
 import { motion } from 'framer-motion';
 
 export default function MissionVision() {
-  const { subtitle, title_line1, title_highlight, description, button, mission, vision, image } = (sections as any).mission_vision;
+  const { subtitle, title_line1, title_highlight, description, mission, vision, image } = (sections as any).mission_vision;
 
   return (
     <section className="py-8 lg:py-10 bg-[#041e42] overflow-hidden">
@@ -30,16 +29,9 @@ export default function MissionVision() {
                 {title_line1} <span className="text-[#fd5b08]">{title_highlight}</span>
               </h2>
               <div className="w-[40px] h-[3px] bg-[#fd5b08] mb-6"></div>
-              <p className="text-[#a8b2c1] text-[14px] leading-[1.7] mb-8 font-normal pr-4">
+              <p className="text-[#a8b2c1] text-[14px] leading-[1.7] font-normal pr-4">
                 {description}
               </p>
-              
-              <Link href={button.href} className="inline-flex items-center gap-3 bg-[#fd5b08] text-white pl-6 pr-2 py-2 rounded-full font-bold hover:bg-[#e04f05] transition-colors shadow-lg group w-fit">
-                <span className="text-[15px]">{button.text}</span>
-                <div className="w-8 h-8 bg-white rounded-full flex items-center justify-center text-[#041e42] group-hover:translate-x-1 transition-transform">
-                  <ArrowRight size={18} strokeWidth={2.5} />
-                </div>
-              </Link>
             </div>
           </motion.div>
 

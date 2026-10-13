@@ -2,13 +2,13 @@
 
 import React, { useState } from 'react';
 import Link from 'next/link';
-import { Menu, X, ArrowRight } from 'lucide-react';
+import { Menu, X } from 'lucide-react';
 import { motion, AnimatePresence } from 'framer-motion';
 import { usePathname } from 'next/navigation';
 import { common } from '../../types';
 
 export default function Header() {
-  const { logo_text, logo_image, links, button_text, button_link } = common.Header;
+  const { logo_text, logo_image, links } = common.Header;
   const [isMobileMenuOpen, setIsMobileMenuOpen] = useState(false);
   const pathname = usePathname();
 
@@ -23,40 +23,24 @@ export default function Header() {
           </Link>
         </motion.div>
         
-        <motion.nav 
-          initial={{ opacity: 0, y: -10 }} 
-          animate={{ opacity: 1, y: 0 }} 
-          transition={{ duration: 0.5, delay: 0.2 }}
-          className="hidden md:flex gap-6 lg:gap-8 items-center"
-        >
-          {links.map((link, index) => (
-            <Link 
-              key={index} 
-              href={link.href}
-              className={`font-bold text-sm lg:text-[15px] transition-colors ${isActive(link.href) ? 'text-[#fd5b08]' : 'text-[#1e3a8a] hover:text-[#fd5b08]'}`}
-            >
-              {link.name}
-            </Link>
-          ))}
-        </motion.nav>
-        
         <motion.div 
           initial={{ opacity: 0, x: 20 }} 
           animate={{ opacity: 1, x: 0 }} 
           transition={{ duration: 0.5, delay: 0.1 }}
-          className="flex items-center gap-3"
+          className="ml-auto flex items-center"
         >
-          <a 
-            href={button_link}
-            className="group bg-[#fd5b08] text-white pl-4 md:pl-6 pr-1 md:pr-1.5 py-1 md:py-1.5 rounded-full font-semibold text-[13px] md:text-[15px] flex items-center gap-2.5 md:gap-4 whitespace-nowrap hover:bg-[#e85004] hover:-translate-y-0.5 hover:shadow-lg hover:shadow-orange-500/40 transition-all duration-300"
-          >
-            <span>{button_text}</span>
-            <span className="w-7 h-7 md:w-9 md:h-9 bg-black/15 text-white rounded-full flex items-center justify-center transition-transform duration-300 group-hover:translate-x-0.5">
-              <ArrowRight size={15} strokeWidth={2.5} />
-            </span>
-          </a>
+          <nav className="hidden md:flex gap-6 lg:gap-8 items-center">
+            {links.map((link, index) => (
+              <Link 
+                key={index} 
+                href={link.href}
+                className={`font-bold text-sm lg:text-[15px] transition-colors ${isActive(link.href) ? 'text-[#fd5b08]' : 'text-[#1e3a8a] hover:text-[#fd5b08]'}`}
+              >
+                {link.name}
+              </Link>
+            ))}
+          </nav>
 
-          {/* Mobile menu button */}
           <button
             type="button"
             aria-label={isMobileMenuOpen ? 'Close menu' : 'Open menu'}

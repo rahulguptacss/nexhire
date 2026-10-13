@@ -6,8 +6,8 @@ import { ArrowRight, ArrowUpRight } from 'lucide-react';
 import { motion } from 'framer-motion';
 import { sections } from '../../types';
 
-export default function About() {
-  const { subtitle, title, description, image1, image2, button, badge_text } = sections.about;
+export default function About({ hideButton = false }: { hideButton?: boolean }) {
+  const { title, description, image1, image2, button, badge_text } = sections.about;
 
   return (
     <section className="pt-10 pb-20 lg:pt-12 lg:pb-24 bg-[#f4f5f7] overflow-hidden">
@@ -22,15 +22,6 @@ export default function About() {
             transition={{ duration: 0.7, ease: "easeOut" }}
             className="w-full lg:w-[46%] flex flex-col gap-5 lg:gap-4"
           >
-            <div className="flex items-center gap-2">
-              <div className="w-5 h-5 rounded-full bg-[#041e42] flex items-center justify-center text-white">
-                <svg width="10" height="10" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="3" strokeLinecap="round" strokeLinejoin="round">
-                  <path d="M12 22V12l-8-8M12 12l8-8"/>
-                </svg>
-              </div>
-              <span className="text-[#041e42] font-bold text-sm tracking-wide">{subtitle}</span>
-            </div>
-            
             <div className="bg-white rounded-3xl p-6 lg:p-8 shadow-sm relative overflow-hidden group">
               <div className="absolute top-0 left-0 w-1 h-full bg-[#fd5b08] transform -translate-y-full group-hover:translate-y-0 transition-transform duration-500"></div>
               <h2 className="text-3xl md:text-4xl lg:text-[40px] font-semibold text-[#041e42] leading-[1.2] relative z-10">
@@ -84,19 +75,21 @@ export default function About() {
             
             <div className="mb-2 lg:mb-0 lg:pl-2 flex flex-col items-center text-center lg:items-start lg:text-left">
               <p 
-                className="text-gray-500 font-medium text-[15.5px] leading-[1.7] mb-8 lg:pr-2" 
+                className={`text-gray-500 font-medium text-[15.5px] leading-[1.7] lg:pr-2 ${hideButton ? '' : 'mb-8'}`} 
                 dangerouslySetInnerHTML={{ __html: description }} 
               />
               
-              <Link 
-                href={button.href} 
-                className="group/btn bg-[#fd5b08] text-white pl-8 pr-2.5 py-2.5 rounded-full font-bold text-[15px] inline-flex items-center gap-6 hover:bg-orange-600 transition-all shadow-md hover:shadow-lg hover:-translate-y-1 w-fit"
-              >
-                {button.text} 
-                <span className="bg-white text-[#041e42] rounded-full w-9 h-9 flex items-center justify-center transition-transform group-hover/btn:translate-x-1">
-                  <ArrowRight size={20} strokeWidth={2.5} />
-                </span>
-              </Link>
+              {!hideButton && (
+                <Link 
+                  href={button.href} 
+                  className="group/btn bg-[#fd5b08] text-white pl-8 pr-2.5 py-2.5 rounded-full font-bold text-[15px] inline-flex items-center gap-6 hover:bg-orange-600 transition-all shadow-md hover:shadow-lg hover:-translate-y-1 w-fit"
+                >
+                  {button.text} 
+                  <span className="bg-white text-[#041e42] rounded-full w-9 h-9 flex items-center justify-center transition-transform group-hover/btn:translate-x-1">
+                    <ArrowRight size={20} strokeWidth={2.5} />
+                  </span>
+                </Link>
+              )}
             </div>
           </motion.div>
           

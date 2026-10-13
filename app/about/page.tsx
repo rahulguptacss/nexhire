@@ -16,7 +16,7 @@ export default function AboutPage() {
   return (
     <main className="min-h-screen bg-white">
       <Breadcrumb title1="About" title2="us" breadcrumb="About Us" />
-      <About />
+      <About hideButton />
       <MissionVision />
       <Process />
       <WhyChooseUs />

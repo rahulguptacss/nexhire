@@ -1,25 +1,15 @@
 "use client";
 
-import React from 'react';
 import Link from 'next/link';
-import { Users, Search, BarChart, ArrowRight } from 'lucide-react';
+import { ArrowRight } from 'lucide-react';
 import { motion } from 'framer-motion';
 import { sections } from '../../types';
 
 export default function Hero() {
-  const { subtitle, title_line1, title_line2, title_highlight, features, button, image } = sections.hero;
-
-  const renderIcon = (name: string) => {
-    switch (name) {
-      case 'Users': return <Users size={28} strokeWidth={2.5} />;
-      case 'Search': return <Search size={28} strokeWidth={2.5} />;
-      case 'BarChart': return <BarChart size={28} strokeWidth={2.5} />;
-      default: return null;
-    }
-  };
+  const { subtitle, title_line1, title_line2, title_highlight, button, image } = sections.hero;
 
   return (
-    <section className="bg-[#041e42] text-white pt-20 pb-0 relative overflow-hidden">
+    <section className="bg-[#041e42] text-white pt-8 pb-0 relative overflow-hidden">
       {/* Background Animated Patterns */}
       <motion.div 
         animate={{ y: [0, -15, 0], opacity: [0.2, 0.5, 0.2] }} 
@@ -101,47 +91,11 @@ export default function Hero() {
           initial={{ opacity: 0, y: 20 }} 
           animate={{ opacity: 1, y: 0 }} 
           transition={{ duration: 0.6, delay: 0.1 }}
-          className="text-[38px] leading-[1.1] sm:text-5xl md:text-7xl lg:text-[80px] font-black mb-14 md:mb-10 tracking-tighter max-w-5xl mx-auto px-2 sm:px-0"
+          className="text-[34px] leading-[1.1] sm:text-5xl md:text-6xl lg:text-[64px] font-black mb-8 tracking-tighter max-w-5xl mx-auto px-2 sm:px-0"
         >
           {title_line1} <br className="hidden sm:block" />
           {title_line2} <span className="text-[#fd5b08]">{title_highlight}</span>
         </motion.h1>
-        
-        <div 
-          className="flex flex-col sm:flex-row justify-center items-center gap-4 md:gap-10 mb-10 md:mb-12 w-full max-w-4xl mx-auto px-0"
-        >
-          {features.map((feature, index) => (
-            <React.Fragment key={index}>
-              <motion.div 
-                initial={{ opacity: 0, y: 20 }} 
-                animate={{ opacity: 1, y: 0 }} 
-                transition={{ duration: 0.5, delay: 0.2 + (index * 0.15) }}
-                whileHover={{ scale: 1.05, x: 5 }}
-                className="flex items-center justify-start gap-4 w-[240px] sm:w-auto mx-auto sm:mx-0 cursor-default group"
-              >
-                <div className="w-12 h-12 md:w-16 md:h-16 rounded-full bg-[#fd5b08] flex items-center justify-center text-white shrink-0 shadow-sm transition-transform duration-300 group-hover:rotate-12 group-hover:shadow-md">
-                  <div className="scale-[0.85] md:scale-100 flex items-center justify-center">
-                    {renderIcon(feature.icon)}
-                  </div>
-                </div>
-                <div className="font-medium text-left text-[14px] md:text-base leading-snug w-[130px] sm:max-w-[130px] transition-colors duration-300 group-hover:text-[#fd5b08]">
-                  {feature.text}
-                </div>
-                {index < features.length - 1 && (
-                  <div className="block sm:hidden w-[1px] h-10 bg-white/20 ml-auto"></div>
-                )}
-              </motion.div>
-              {index < features.length - 1 && (
-                <motion.div 
-                  initial={{ opacity: 0 }} 
-                  animate={{ opacity: 1 }} 
-                  transition={{ duration: 0.5, delay: 0.3 + (index * 0.15) }}
-                  className="hidden sm:block w-[1px] h-12 bg-white/20"
-                ></motion.div>
-              )}
-            </React.Fragment>
-          ))}
-        </div>
         
         <motion.div 
           initial={{ opacity: 0, y: 20 }} 
@@ -165,9 +119,9 @@ export default function Hero() {
           initial={{ opacity: 0, y: 50 }} 
           animate={{ opacity: 1, y: 0 }} 
           transition={{ duration: 0.8, delay: 0.4 }}
-          className="relative flex justify-center mt-12 md:mt-4 -mb-1"
+          className="relative flex justify-center mt-6 md:mt-2 -mb-1"
         >
-          <img src={image} alt="Hero Team" className="w-full max-w-[1200px] h-auto object-contain pointer-events-none scale-110 md:scale-100 origin-bottom" />
+          <img src={image} alt="Hero Team" className="w-full max-w-[860px] max-h-[180px] sm:max-h-[220px] md:max-h-[260px] object-contain object-bottom pointer-events-none" />
         </motion.div>
       </div>
     </section>

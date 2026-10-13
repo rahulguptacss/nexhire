@@ -31,10 +31,13 @@ export default function Topbar() {
         >
           {contact_info.map((item, index) => (
             <React.Fragment key={index}>
-              <div className="flex items-center gap-2 font-medium">
+              <a
+                href={item.icon === 'Mail' ? `mailto:${item.value}` : `tel:${item.value.replace(/[^\d+]/g, '')}`}
+                className="flex items-center gap-2 font-medium hover:text-gray-200 transition-colors"
+              >
                 {renderIcon(item.icon)}
                 <span>{item.value}</span>
-              </div>
+              </a>
               {index < contact_info.length - 1 && (
                 <span className="text-white/60 font-light">|</span>
               )}
