@@ -51,7 +51,7 @@ export default function Services({ limit }: { limit?: number } = {}) {
             <div className="w-[40px] h-[1.5px] bg-[#041e42]"></div>
           </div>
           
-          <h2 className="text-[34px] md:text-[44px] font-black text-[#041e42] leading-[1.1] mb-4 tracking-tight">
+          <h2 className="text-[34px] md:text-[46px] font-black text-[#041e42] leading-[1.1] mb-4 tracking-tight">
             {title_line1} <span className="text-[#fd5b08]">{title_highlight}</span>
           </h2>
           
