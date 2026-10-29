@@ -4,11 +4,11 @@
       "contact_info": [
         {
           "icon": "Mail",
-          "value": "contact@nexhire.com"
+          "value": "info@xyz.com"
         },
         {
           "icon": "Phone",
-          "value": "+1 (800) 582-4473"
+          "value": "+100000000000"
         }
       ],
       "socials": [
@@ -153,9 +153,9 @@
         }
       ],
       "contact": {
-        "phone": "+1 (800) 582-4473",
-        "email": "contact@nexhire.com",
-        "address": "742 Evergreen Terrace, Suite 400, Financial District, New York, NY 10005"
+        "phone": "+100000000000",
+        "email": "info@xyz.com",
+        "address": "123 Education Lane, New York, NY 10001"
       },
       "copyright": "Copyright © 2026. All rights reserved. Powered by Lestow"
     }
@@ -759,19 +759,19 @@
                 {
                   "icon": "Mail",
                   "title": "Email Us Directly",
-                  "text": "contact@nexhire.com",
-                  "href": "mailto:contact@nexhire.com"
+                  "text": "info@xyz.com",
+                  "href": "mailto:info@xyz.com"
                 },
                 {
                   "icon": "Phone",
                   "title": "Call Our Team",
-                  "text": "+1 (800) 582-4473",
-                  "href": "tel:+18005824473"
+                  "text": "+100000000000",
+                  "href": "tel:+100000000000"
                 },
                 {
                   "icon": "MapPin",
                   "title": "Global Headquarters",
-                  "text": "742 Evergreen Terrace, Suite 400, Financial District, New York, NY 10005",
+                  "text": "123 Education Lane, New York, NY 10001",
                   "href": "https://maps.google.com",
                   "wide": true
                 }
