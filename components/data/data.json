@@ -61,13 +61,9 @@
         {
           "name": "FAQ",
           "href": "#faq"
-        },
-        {
-          "name": "Contact",
-          "href": "#contact"
         }
       ],
-      "button_text": "Hire Talent",
+      "button_text": "Contact",
       "button_link": "#contact"
     },
     "Footer": {
