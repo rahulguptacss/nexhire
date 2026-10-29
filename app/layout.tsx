@@ -1,10 +1,7 @@
 import type { Metadata } from 'next';
 import { Plus_Jakarta_Sans } from 'next/font/google';
 import './globals.css';
-import Topbar from '../components/sections/Topbar';
-import Header from '../components/sections/Header';
-import Footer from '../components/sections/Footer';
-import BackToTop from '../components/ui/BackToTop';
+import { pages } from '@/components/types';
 
 const plusJakartaSans = Plus_Jakarta_Sans({ 
   subsets: ['latin'],
@@ -13,23 +10,19 @@ const plusJakartaSans = Plus_Jakarta_Sans({
 });
 
 export const metadata: Metadata = {
-  title: 'TalentBridge - Your Hiring Partner',
-  description: 'Connecting top talent with the right opportunities.',
+  title: pages.home?.metadata?.title || 'NexHire - Global Talent Solutions & Executive Staffing',
+  description: pages.home?.metadata?.description || 'Connecting visionary enterprises with top-tier global talent, executive leadership, and specialized tech teams.',
 };
 
 export default function RootLayout({
   children,
-}: {
+}: Readonly<{
   children: React.ReactNode;
-}) {
+}>) {
   return (
     <html lang="en">
       <body className={`${plusJakartaSans.className} antialiased`}>
-        <Topbar />
-        <Header />
         {children}
-        <Footer />
-        <BackToTop />
       </body>
     </html>
   );

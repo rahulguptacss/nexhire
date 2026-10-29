@@ -4,10 +4,11 @@ import React from 'react';
 import { Mail, Phone } from 'lucide-react';
 import { FaFacebook, FaInstagram, FaLinkedin } from 'react-icons/fa';
 import { motion } from 'framer-motion';
-import { common } from '../../types';
+import { common, TopbarData } from '../../types';
 
-export default function Topbar() {
-  const { contact_info, socials } = common.Topbar;
+export default function Topbar({ data }: { data?: TopbarData } = {}) {
+  const content = data || common.Topbar;
+  const { contact_info, socials } = content;
 
   const renderIcon = (name: string) => {
     switch (name) {
@@ -21,7 +22,7 @@ export default function Topbar() {
   };
 
   return (
-    <div className="bg-[#fd5b08] text-white text-sm overflow-hidden">
+    <div className="bg-[#00b594] text-white text-sm overflow-hidden">
       <div className="container mx-auto py-3 px-6 md:px-12 lg:px-16 flex flex-col md:flex-row justify-between items-center gap-4 md:gap-0">
         <motion.div 
           initial={{ y: -20, opacity: 0 }} 

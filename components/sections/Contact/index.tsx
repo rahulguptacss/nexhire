@@ -5,7 +5,7 @@ import { motion, AnimatePresence, MotionConfig, type Variants } from 'framer-mot
 import {
   User, Phone, Mail, MessageSquare, ArrowRight, MapPin, CheckCircle2, type LucideIcon,
 } from 'lucide-react';
-import { sections } from '../../types';
+import { sections, ContactSectionData } from '../../types';
 
 interface InfoItem { icon: string; title: string; text: string; href: string; wide?: boolean }
 const icons: Record<string, LucideIcon> = { Mail, Phone, MapPin };
@@ -23,7 +23,7 @@ const stagger: Variants = {
 };
 
 const inputBase =
-  'w-full bg-white border border-[#e3e8ef] rounded-[10px] text-[14px] text-[#041e42] placeholder:text-[#8a94a6] outline-none transition-[border-color,box-shadow] focus:border-[#fd5b08] focus:shadow-[0_0_0_3px_rgba(253,91,8,0.12)]';
+  'w-full bg-white border border-[#e3e8ef] rounded-[10px] text-[14px] text-[#062454] placeholder:text-[#8a94a6] outline-none transition-[border-color,box-shadow] focus:border-[#00b594] focus:shadow-[0_0_0_3px_rgba(0, 181, 148,0.12)]';
 
 function Field({
   id, name, type = 'text', placeholder, icon: Icon, autoComplete, onInput
@@ -46,8 +46,9 @@ function Field({
   );
 }
 
-export default function Contact() {
-  const { subtitle, title_line1, title_highlight, description, form, map, info } = (sections as any).contact;
+export default function Contact({ data }: { data?: ContactSectionData } = {}) {
+  const content = data || sections.contact;
+  const { subtitle, title_line1, title_highlight, description, form, map, info } = content;
   const [sent, setSent] = useState(false);
 
   const onSubmit = (e: React.FormEvent<HTMLFormElement>) => {
@@ -59,7 +60,7 @@ export default function Contact() {
 
   return (
     <MotionConfig reducedMotion="user">
-      <section className="py-14 lg:py-16 bg-white overflow-hidden">
+      <section id="contact" className="py-16 lg:py-20 bg-[#f0f4f8] border-t border-[#e2e8f0] overflow-hidden scroll-mt-20">
         <div className="container mx-auto px-4 md:px-8 max-w-[1300px]">
           {/* Header */}
           <motion.div
@@ -70,13 +71,13 @@ export default function Contact() {
             className="text-center max-w-[680px] mx-auto mb-10"
           >
             <motion.div variants={fadeUp} className="flex items-center justify-center gap-3 mb-3">
-              <span className="w-[40px] h-[2px] bg-[#fd5b08]" />
-              <span className="text-[#041e42] font-bold text-[14px] uppercase tracking-[2px]">{subtitle}</span>
-              <span className="w-[40px] h-[2px] bg-[#fd5b08]" />
+              <span className="w-[40px] h-[2px] bg-[#00b594]" />
+              <span className="text-[#062454] font-bold text-[14px] uppercase tracking-[2px]">{subtitle}</span>
+              <span className="w-[40px] h-[2px] bg-[#00b594]" />
             </motion.div>
-            <motion.h2 variants={fadeUp} className="text-[32px] md:text-[42px] font-black text-[#041e42] leading-tight mb-3">
+            <motion.h2 variants={fadeUp} className="text-[32px] md:text-[42px] font-black text-[#062454] leading-tight mb-3">
               {title_line1}
-              <span className="text-[#fd5b08]">{title_highlight}</span>
+              <span className="text-[#00b594]">{title_highlight}</span>
             </motion.h2>
             <motion.p variants={fadeUp} className="text-[#5e6a7c] text-[15px] leading-relaxed">
               {description}
@@ -90,16 +91,16 @@ export default function Contact() {
               whileInView={{ opacity: 1, x: 0 }}
               viewport={{ once: true, amount: 0.2 }}
               transition={{ duration: 0.7, ease }}
-              className="bg-white rounded-[16px] border border-[#eef1f5] shadow-[0_10px_35px_rgba(4,30,66,0.07)] p-6 md:p-8"
+              className="bg-white rounded-[16px] border border-[#eef1f5] shadow-[0_10px_35px_rgba(6, 36, 84,0.07)] p-6 md:p-8"
             >
               <div className="flex items-center gap-3 mb-3">
-                <span className="w-[30px] h-[2px] bg-[#fd5b08]" />
-                <span className="text-[#041e42] font-bold text-[12px] uppercase tracking-[1.5px]">{form.label}</span>
+                <span className="w-[30px] h-[2px] bg-[#00b594]" />
+                <span className="text-[#062454] font-bold text-[12px] uppercase tracking-[1.5px]">{form.label}</span>
               </div>
-              <h3 className="text-[26px] md:text-[32px] font-black leading-[1.2] text-[#041e42] mb-4">
+              <h3 className="text-[26px] md:text-[32px] font-black leading-[1.2] text-[#062454] mb-4">
                 {form.title_line1}
                 <br />
-                <span className="text-[#fd5b08]">{form.title_highlight}</span>
+                <span className="text-[#00b594]">{form.title_highlight}</span>
               </h3>
               <p className="text-[#5e6a7c] text-[14px] leading-relaxed pb-6 mb-6 border-b border-[#e8ecf2]">
                 {form.text}
@@ -153,10 +154,10 @@ export default function Contact() {
                   <button
                     id="contact-submit"
                     type="submit"
-                    className="group inline-flex items-center gap-3 bg-[#fd5b08] hover:bg-[#e04f05] text-white text-[14px] font-bold pl-6 pr-2 py-2 rounded-[10px] transition-colors cursor-pointer"
+                    className="group inline-flex items-center gap-3 bg-[#00b594] hover:bg-[#00977b] text-white text-[14px] font-bold pl-6 pr-2 py-2 rounded-[10px] transition-colors cursor-pointer"
                   >
                     {form.button}
-                    <span className="w-8 h-8 rounded-full bg-white text-[#fd5b08] flex items-center justify-center transition-transform group-hover:translate-x-1">
+                    <span className="w-8 h-8 rounded-full bg-white text-[#00b594] flex items-center justify-center transition-transform group-hover:translate-x-1">
                       <ArrowRight size={16} strokeWidth={2.5} />
                     </span>
                   </button>
@@ -172,7 +173,7 @@ export default function Contact() {
               transition={{ duration: 0.7, ease }}
               className="flex flex-col gap-4"
             >
-              <div className="rounded-[16px] overflow-hidden border border-[#eef1f5] shadow-[0_10px_35px_rgba(4,30,66,0.07)] h-[280px] lg:flex-1 lg:min-h-[280px]">
+              <div className="rounded-[16px] overflow-hidden border border-[#eef1f5] shadow-[0_10px_35px_rgba(6, 36, 84,0.07)] h-[280px] lg:flex-1 lg:min-h-[280px]">
                 <iframe
                   title={map.title}
                   src={map.src}
@@ -192,13 +193,13 @@ export default function Contact() {
                       key={item.title}
                       href={item.href}
                       {...(external ? { target: '_blank', rel: 'noopener noreferrer' } : {})}
-                      className={`group flex items-center gap-4 bg-white rounded-[14px] border border-[#eef1f5] shadow-[0_6px_20px_rgba(4,30,66,0.05)] px-5 py-4 transition-[transform,box-shadow,border-color] duration-300 hover:-translate-y-1 hover:border-[#fd5b08]/30 hover:shadow-[0_12px_30px_rgba(4,30,66,0.1)] ${item.wide ? 'sm:col-span-2' : ''}`}
+                      className={`group flex items-center gap-4 bg-white rounded-[14px] border border-[#eef1f5] shadow-[0_6px_20px_rgba(6, 36, 84,0.05)] px-5 py-4 transition-[transform,box-shadow,border-color] duration-300 hover:-translate-y-1 hover:border-[#00b594]/30 hover:shadow-[0_12px_30px_rgba(6, 36, 84,0.1)] ${item.wide ? 'sm:col-span-2' : ''}`}
                     >
-                      <span className="shrink-0 w-12 h-12 rounded-full bg-[#fff0e6] text-[#fd5b08] flex items-center justify-center transition-colors duration-300 group-hover:bg-[#fd5b08] group-hover:text-white">
+                      <span className="shrink-0 w-12 h-12 rounded-full bg-[#e6f8f5] text-[#00b594] flex items-center justify-center transition-colors duration-300 group-hover:bg-[#00b594] group-hover:text-white">
                         <Icon size={20} strokeWidth={2} />
                       </span>
                       <span className="min-w-0">
-                        <span className="block text-[#041e42] text-[15px] font-bold">{item.title}</span>
+                        <span className="block text-[#062454] text-[15px] font-bold">{item.title}</span>
                         <span className="block text-[#5e6a7c] text-[13px] break-words">{item.text}</span>
                       </span>
                     </a>

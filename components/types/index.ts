@@ -25,7 +25,7 @@ export interface FooterData {
   description: string;
   socials: { icon: string; href: string }[];
   quick_links: LinkType[];
-  our_services: LinkType[];
+  our_services?: LinkType[];
   contact: { address: string; phone: string; email: string };
   copyright: string;
 }
@@ -33,11 +33,13 @@ export interface FooterData {
 export interface HeroSectionData {
   subtitle: string;
   title_line1: string;
-  title_line2: string;
+  title_line2?: string;
   title_highlight: string;
   features: { icon: string; text: string }[];
   button: { text: string; href: string };
+  secondary_button?: { text: string; href: string };
   image: string;
+  image_alt?: string;
 }
 
 export interface FeaturesSectionData {
@@ -45,28 +47,66 @@ export interface FeaturesSectionData {
 }
 
 export interface AboutSectionData {
-  subtitle: string;
+  subtitle?: string;
   title: string;
   description: string;
   image1: string;
+  image1_alt?: string;
   image2: string;
-  button: { text: string; href: string };
+  image2_alt?: string;
+  button?: { text: string; href: string };
+  badge_text?: string;
+}
+
+export interface MissionVisionData {
+  subtitle: string;
+  title_line1: string;
+  title_highlight: string;
+  description: string;
+  mission: { title: string; desc: string; description?: string };
+  vision: { title: string; desc: string; description?: string };
+  image: string;
+  image_alt?: string;
 }
 
 export interface ServiceItem {
   icon: string;
   title: string;
-  slug: string;
+  slug?: string;
+  description: string;
+  image?: string;
+  link?: string;
+}
+
+export interface PinnedPanelStat {
+  label: string;
+  value: string;
+}
+
+export interface PinnedPanelItem {
+  number: string;
+  tag: string;
+  title: string;
+  subtitle: string;
   description: string;
   image: string;
-  hero: {
-    tag: string;
-    title1: string;
-    title2: string;
-    tagline: string[];
+  image_alt?: string;
+  badge?: string;
+  stats?: PinnedPanelStat[];
+  highlights?: string[];
+  button?: {
+    text: string;
+    href: string;
   };
-  content: { title: string; text: string }[];
-  link: string;
+  theme?: 'dark' | 'light' | 'navy' | 'mint' | string;
+}
+
+export interface PinnedPanelsSectionData {
+  subtitle: string;
+  title_line1: string;
+  title_highlight: string;
+  description: string;
+  panels: PinnedPanelItem[];
 }
 
 export interface ServicesSectionData {
@@ -74,8 +114,16 @@ export interface ServicesSectionData {
   title_line1: string;
   title_highlight: string;
   description: string;
-  button: { text: string; href: string };
+  button?: { text: string; href: string };
+  inquire_text?: string;
   items: ServiceItem[];
+}
+
+export interface ProcessStep {
+  number: string;
+  title: string;
+  description: string;
+  icon: string;
 }
 
 export interface ProcessSectionData {
@@ -83,33 +131,184 @@ export interface ProcessSectionData {
   title_line1: string;
   title_highlight: string;
   description: string;
-  steps: { number: string; title: string; description: string; icon: string }[];
+  steps: ProcessStep[];
+}
+
+export interface WhyChooseUsFeature {
+  icon: string;
+  title: string;
+  description: string;
+}
+
+export interface WhyChooseUsSectionData {
+  subtitle: string;
+  title_line1: string;
+  title_highlight: string;
+  description: string;
+  badge_text: string;
+  image1: string;
+  image2: string;
+  features: WhyChooseUsFeature[];
+}
+
+export interface TeamMember {
+  name: string;
+  role: string;
+  image: string;
+  socials?: {
+    linkedin?: string;
+    facebook?: string;
+    instagram?: string;
+    youtube?: string;
+  };
+}
+
+export interface TeamSectionData {
+  subtitle: string;
+  title_line1: string;
+  title_highlight: string;
+  description: string;
+  members: TeamMember[];
+}
+
+export interface StatsItem {
+  value: string;
+  label: string;
+}
+
+export interface StatsSectionData {
+  items: StatsItem[];
+}
+
+export interface TestimonialItem {
+  text: string;
+  author: string;
+  role: string;
+  avatar: string;
+  rating: number;
 }
 
 export interface TestimonialsSectionData {
   subtitle: string;
   title_line1: string;
   title_highlight: string;
-  button: { text: string; href: string };
-  reviews: { text: string; author: string; role: string; avatar: string; rating: number }[];
+  button?: { text: string; href: string };
+  reviews: TestimonialItem[];
 }
 
-export interface StatsSectionData {
-  items: { value: string; label: string }[];
+export interface FaqItem {
+  question: string;
+  answer: string;
 }
 
-export interface BlogSectionData {
+export interface FaqSectionData {
   subtitle: string;
   title_line1: string;
   title_highlight: string;
   description: string;
-  button: { text: string; href: string };
-  posts: { image: string; date: string; author: string; title: string; description: string; link: string }[];
+  image: string;
+  items: FaqItem[];
 }
 
-export const siteJson = data;
-export const common = data.common;
-export const template = data.categories.HR.templateComponents['template-1'];
-export const pages = template.pages;
-export const sections = template.sections;
-// Force HMR
+export interface ContactFormField {
+  firstName: string;
+  lastName: string;
+  phone: string;
+  email: string;
+  message: string;
+}
+
+export interface ContactForm {
+  label: string;
+  title_line1: string;
+  title_highlight: string;
+  text: string;
+  fields: ContactFormField;
+  button: string;
+  success: string;
+}
+
+export interface ContactMap {
+  title: string;
+  src: string;
+}
+
+export interface ContactInfoItem {
+  icon: string;
+  title: string;
+  text: string;
+  href: string;
+  wide?: boolean;
+}
+
+export interface ContactSectionData {
+  subtitle: string;
+  title_line1: string;
+  title_highlight: string;
+  description: string;
+  form: ContactForm;
+  map: ContactMap;
+  info: ContactInfoItem[];
+}
+
+export interface PageComponent {
+  key: string;
+  component: string;
+}
+
+export interface HomePageData {
+  title: string;
+  pageName: string;
+  metadata?: {
+    title: string;
+    description: string;
+  };
+  components: PageComponent[];
+}
+
+export interface PagesData {
+  home: HomePageData;
+  [key: string]: any;
+}
+
+export interface SectionsData {
+  hero: HeroSectionData;
+  features: FeaturesSectionData;
+  about: AboutSectionData;
+  pinned_panels?: PinnedPanelsSectionData;
+  mission_vision: MissionVisionData;
+  services: ServicesSectionData;
+  process: ProcessSectionData;
+  why_choose_us: WhyChooseUsSectionData;
+  team: TeamSectionData;
+  stats: StatsSectionData;
+  testimonials: TestimonialsSectionData;
+  faq: FaqSectionData;
+  contact: ContactSectionData;
+}
+
+export interface CommonData {
+  Topbar: TopbarData;
+  Header: HeaderData;
+  Footer: FooterData;
+}
+
+export interface SiteData {
+  common: CommonData;
+  categories: {
+    HR: {
+      templateComponents: {
+        'template-1': {
+          pages: PagesData;
+          sections: SectionsData;
+        };
+      };
+    };
+  };
+}
+
+export const siteJson: SiteData = data as unknown as SiteData;
+export const common: CommonData = siteJson.common;
+export const template = siteJson.categories.HR.templateComponents['template-1'];
+export const pages: PagesData = template.pages;
+export const sections: SectionsData = template.sections;

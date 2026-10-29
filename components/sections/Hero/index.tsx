@@ -1,13 +1,15 @@
 "use client";
 
 import { motion } from 'framer-motion';
-import { sections } from '../../types';
+import { sections, HeroSectionData } from '../../types';
+import { ArrowRight, CheckCircle2 } from 'lucide-react';
 
-export default function Hero() {
-  const { subtitle, title_line1, title_line2, title_highlight, image } = sections.hero;
+export default function Hero({ data }: { data?: HeroSectionData } = {}) {
+  const content = data || sections.hero;
+  const { subtitle, title_line1, title_line2, title_highlight, image, image_alt, features, button, secondary_button } = content;
 
   return (
-    <section className="bg-[#041e42] text-white pt-8 pb-0 relative overflow-hidden">
+    <section id="home" className="bg-[#062454] text-white pt-10 md:pt-14 pb-0 relative overflow-hidden">
       {/* Background Animated Patterns */}
       <motion.div 
         animate={{ y: [0, -15, 0], opacity: [0.2, 0.5, 0.2] }} 
@@ -22,7 +24,7 @@ export default function Hero() {
       <motion.div 
         animate={{ rotate: [0, 90, 180, 270, 360] }} 
         transition={{ duration: 20, repeat: Infinity, ease: "linear" }}
-        className="absolute top-[40%] left-[10%] text-[#fd5b08]"
+        className="absolute top-[35%] left-[8%] text-[#00b594]"
       >
         <svg width="30" height="30" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="4" strokeLinecap="round" strokeLinejoin="round"><path d="M18 6 6 18"/><path d="m6 6 12 12"/></svg>
       </motion.div>
@@ -30,68 +32,99 @@ export default function Hero() {
       <motion.div 
         animate={{ scale: [1, 1.2, 1], opacity: [0.1, 0.3, 0.1] }} 
         transition={{ duration: 6, repeat: Infinity, ease: "easeInOut" }}
-        className="absolute top-[30%] -left-[5%] w-[400px] h-[400px] rounded-full bg-white/5 blur-3xl pointer-events-none"
+        className="absolute top-[20%] -left-[5%] w-[400px] h-[400px] rounded-full bg-[#00b594]/10 blur-3xl pointer-events-none"
       />
 
       <motion.div 
         animate={{ y: [0, 30, 0], x: [0, -20, 0] }} 
         transition={{ duration: 8, repeat: Infinity, ease: "easeInOut" }}
-        className="absolute top-[25%] right-[5%] w-12 h-12 md:w-16 md:h-16 border-2 border-white/20 rounded-full"
+        className="absolute top-[20%] right-[5%] w-12 h-12 md:w-16 md:h-16 border-2 border-white/20 rounded-full"
       />
-
-      <motion.div 
-        animate={{ y: [0, -20, 0], scale: [1, 1.1, 1] }} 
-        transition={{ duration: 5, repeat: Infinity, ease: "easeInOut", delay: 1 }}
-        className="absolute bottom-[20%] right-[10%] w-8 h-8 md:w-10 md:h-10 border-2 border-white/20 rounded-full"
-      />
-
-      <motion.div 
-        animate={{ x: [0, 15, 0], opacity: [0.6, 1, 0.6] }} 
-        transition={{ duration: 5, repeat: Infinity, ease: "easeInOut", delay: 0.5 }}
-        className="absolute top-[40%] right-[5%] md:right-[15%] text-[#fd5b08] hidden lg:block"
-      >
-        <div className="grid grid-cols-4 gap-3">
-          {[...Array(16)].map((_, i) => <div key={i} className="w-1.5 h-1.5 bg-current rounded-full"></div>)}
-        </div>
-      </motion.div>
-
-      <div className="absolute top-0 w-full h-full left-0 pointer-events-none opacity-20 hidden md:block overflow-hidden">
-        <svg viewBox="0 0 100 100" preserveAspectRatio="none" className="w-[150%] h-[150%] -ml-[25%] -mt-[25%]">
-          <path d="M0,30 Q25,10 50,30 T100,30" fill="none" stroke="white" strokeWidth="0.1" />
-          <path d="M0,80 Q25,60 50,80 T100,80" fill="none" stroke="white" strokeWidth="0.1" />
-        </svg>
-      </div>
 
       <div className="container mx-auto px-4 md:px-8 relative z-10 text-center">
+        {/* Subtitle Badge */}
         <motion.div 
           initial={{ opacity: 0, y: 20 }} 
           animate={{ opacity: 1, y: 0 }} 
           transition={{ duration: 0.6 }}
-          className="flex justify-center items-center gap-4 mb-6"
+          className="flex justify-center items-center gap-3 mb-5"
         >
-          <div className="w-12 h-[2px] bg-[#fd5b08]"></div>
-          <span className="text-white font-medium uppercase tracking-[0.15em] text-xs md:text-sm">{subtitle}</span>
-          <div className="w-12 h-[2px] bg-[#fd5b08]"></div>
+          <div className="w-10 h-[2px] bg-[#00b594]"></div>
+          <span className="text-white/90 font-bold uppercase tracking-[0.2em] text-xs md:text-sm">{subtitle}</span>
+          <div className="w-10 h-[2px] bg-[#00b594]"></div>
         </motion.div>
         
+        {/* Main Heading */}
         <motion.h1 
           initial={{ opacity: 0, y: 20 }} 
           animate={{ opacity: 1, y: 0 }} 
           transition={{ duration: 0.6, delay: 0.1 }}
-          className="text-[34px] leading-[1.1] sm:text-5xl md:text-6xl lg:text-[64px] font-black mb-6 md:mb-8 tracking-tighter max-w-5xl mx-auto px-2 sm:px-0"
+          className="text-[34px] leading-[1.12] sm:text-5xl md:text-6xl lg:text-[64px] font-black mb-6 md:mb-6 tracking-tight max-w-5xl mx-auto px-2 sm:px-0 text-white"
         >
           {title_line1} <br className="hidden sm:block" />
-          {title_line2} <span className="text-[#fd5b08]">{title_highlight}</span>
+          {title_line2 && `${title_line2} `}
+          <span className="bg-gradient-to-r from-[#74dd11] via-[#00c2a0] to-[#00b594] bg-clip-text text-transparent">{title_highlight}</span>
         </motion.h1>
+
+        {/* Feature Highlights Pills */}
+        {features && features.length > 0 && (
+          <motion.div
+            initial={{ opacity: 0, y: 15 }}
+            animate={{ opacity: 1, y: 0 }}
+            transition={{ duration: 0.6, delay: 0.2 }}
+            className="flex flex-wrap justify-center gap-3 sm:gap-6 mb-8 max-w-3xl mx-auto"
+          >
+            {features.map((item, idx) => (
+              <div
+                key={idx}
+                className="inline-flex items-center gap-2 bg-white/10 backdrop-blur-sm border border-white/15 rounded-full px-4 py-1.5 text-xs sm:text-sm text-gray-200"
+              >
+                <CheckCircle2 size={16} className="text-[#74dd11]" />
+                <span>{item.text}</span>
+              </div>
+            ))}
+          </motion.div>
+        )}
+
+        {/* CTA Buttons */}
+        <motion.div
+          initial={{ opacity: 0, y: 15 }}
+          animate={{ opacity: 1, y: 0 }}
+          transition={{ duration: 0.6, delay: 0.25 }}
+          className="flex flex-wrap items-center justify-center gap-4 mb-10"
+        >
+          {button && (
+            <a
+              href={button.href || '#contact'}
+              className="inline-flex items-center justify-center gap-2 rounded-full bg-[#00b594] px-8 py-3.5 text-[15px] font-bold text-white hover:bg-[#00977b] transition-all duration-300 shadow-lg hover:shadow-xl hover:-translate-y-0.5"
+            >
+              {button.text} <ArrowRight size={18} />
+            </a>
+          )}
+          {secondary_button && (
+            <a
+              href={secondary_button.href || '#services'}
+              className="inline-flex items-center justify-center gap-2 rounded-full bg-white/10 border border-white/20 px-7 py-3.5 text-[15px] font-semibold text-white hover:bg-white/20 transition-all duration-300"
+            >
+              {secondary_button.text}
+            </a>
+          )}
+        </motion.div>
 
         {/* Hero Image */}
         <motion.div 
-          initial={{ opacity: 0, y: 50 }} 
+          initial={{ opacity: 0, y: 40 }} 
           animate={{ opacity: 1, y: 0 }} 
-          transition={{ duration: 0.8, delay: 0.3 }}
-          className="relative flex justify-center mt-6 md:mt-4 -mb-1"
+          transition={{ duration: 0.8, delay: 0.35 }}
+          className="relative flex justify-center mt-4 md:mt-6 -mb-8 sm:-mb-10 px-2 sm:px-4"
         >
-          <img src={image} alt="Hero Team" className="w-full max-w-[860px] max-h-[180px] sm:max-h-[220px] md:max-h-[260px] object-contain object-bottom pointer-events-none" />
+          <div className="relative w-full max-w-[1060px] rounded-2xl md:rounded-3xl overflow-hidden shadow-[0_20px_60px_rgba(0,0,0,0.35)] border-4 border-white/15 bg-[#062454]">
+            <img 
+              src={image} 
+              alt={image_alt || "NexHire Executive Talent Acquisition Team"} 
+              className="w-full h-auto max-h-[360px] sm:max-h-[460px] md:max-h-[520px] object-cover object-top" 
+            />
+          </div>
         </motion.div>
       </div>
     </section>

@@ -3,7 +3,7 @@
 import React from 'react';
 import { motion, Variants } from 'framer-motion';
 import { FaFacebookF, FaInstagram, FaLinkedinIn, FaYoutube } from 'react-icons/fa';
-import { sections } from '@/components/types';
+import { sections, TeamSectionData } from '@/components/types';
 
 const ease = [0.22, 1, 0.36, 1] as const;
 
@@ -34,11 +34,12 @@ const socialIcons = [
   { key: 'youtube', icon: FaYoutube, label: 'YouTube' },
 ] as const;
 
-export default function Team() {
-  const { subtitle, title_line1, title_highlight, description, members } = (sections as any).team;
+export default function Team({ data }: { data?: TeamSectionData } = {}) {
+  const content = data || sections.team;
+  const { subtitle, title_line1, title_highlight, description, members } = content;
 
   return (
-    <section className="relative overflow-hidden bg-white py-10 md:py-14">
+    <section id="team" className="relative overflow-hidden bg-white py-10 md:py-14 scroll-mt-20">
       {/* Decorative: left ring */}
       <motion.div
         aria-hidden
@@ -56,13 +57,13 @@ export default function Team() {
         transition={{ duration: 5, repeat: Infinity, ease: 'easeInOut' }}
       >
         {Array.from({ length: 24 }).map((_, i) => (
-          <span key={i} className="w-[3px] h-[3px] rounded-full bg-[#fd5b08]/70" />
+          <span key={i} className="w-[3px] h-[3px] rounded-full bg-[#00b594]/70" />
         ))}
       </motion.div>
       {/* Decorative: right ring */}
       <motion.div
         aria-hidden
-        className="pointer-events-none absolute -right-[60px] top-[70px] w-[120px] h-[120px] rounded-full border-[18px] border-[#fdf0e8]"
+        className="pointer-events-none absolute -right-[60px] top-[70px] w-[120px] h-[120px] rounded-full border-[18px] border-[#e6f8f5]"
         animate={{ rotate: 360 }}
         transition={{ duration: 30, repeat: Infinity, ease: 'linear' }}
       />
@@ -78,15 +79,15 @@ export default function Team() {
         >
           <motion.div variants={fadeUp} className="flex justify-center items-center gap-3 mb-2">
             <motion.span
-              className="w-[40px] h-[2px] bg-[#fd5b08] origin-right"
+              className="w-[40px] h-[2px] bg-[#00b594] origin-right"
               initial={{ scaleX: 0 }}
               whileInView={{ scaleX: 1 }}
               viewport={{ once: true }}
               transition={{ duration: 0.6, ease, delay: 0.2 }}
             />
-            <span className="text-[#041e42] font-bold uppercase tracking-[0.15em] text-[13px]">{subtitle}</span>
+            <span className="text-[#062454] font-bold uppercase tracking-[0.15em] text-[13px]">{subtitle}</span>
             <motion.span
-              className="w-[40px] h-[2px] bg-[#fd5b08] origin-left"
+              className="w-[40px] h-[2px] bg-[#00b594] origin-left"
               initial={{ scaleX: 0 }}
               whileInView={{ scaleX: 1 }}
               viewport={{ once: true }}
@@ -94,8 +95,8 @@ export default function Team() {
             />
           </motion.div>
 
-          <motion.h2 variants={fadeUp} className="text-[32px] md:text-[42px] font-black text-[#041e42] leading-[1.15] mb-3 tracking-tight">
-            {title_line1}<span className="text-[#fd5b08]">{title_highlight}</span>
+          <motion.h2 variants={fadeUp} className="text-[32px] md:text-[42px] font-black text-[#062454] leading-[1.15] mb-3 tracking-tight">
+            {title_line1} <span className="text-[#00b594]">{title_highlight}</span>
           </motion.h2>
 
           <motion.p variants={fadeUp} className="text-[#5e6a7c] max-w-[640px] mx-auto text-[15px] leading-relaxed">
@@ -117,7 +118,7 @@ export default function Team() {
               variants={cardVariants}
               whileHover={{ y: -6 }}
               transition={{ type: 'spring', stiffness: 260, damping: 20 }}
-              className="group bg-white rounded-xl overflow-hidden border border-[#edf0f4] shadow-[0_4px_18px_-6px_rgba(4,30,66,0.12)] hover:shadow-[0_18px_36px_-14px_rgba(4,30,66,0.28)] transition-shadow duration-300"
+              className="group bg-white rounded-xl overflow-hidden border border-[#edf0f4] shadow-[0_4px_18px_-6px_rgba(6, 36, 84,0.12)] hover:shadow-[0_18px_36px_-14px_rgba(6, 36, 84,0.28)] transition-shadow duration-300"
             >
               {/* Photo */}
               <div className="relative aspect-[4/3] overflow-hidden bg-[#f1f4f8]">
@@ -128,13 +129,13 @@ export default function Team() {
                   className="w-full h-full object-cover object-top transition-transform duration-700 ease-out group-hover:scale-[1.07]"
                 />
                 {/* bottom gradient + orange bar on hover */}
-                <div className="absolute inset-0 bg-gradient-to-t from-[#041e42]/35 via-transparent to-transparent opacity-0 transition-opacity duration-500 group-hover:opacity-100" />
-                <span className="absolute bottom-0 left-0 h-[3px] w-full bg-[#fd5b08] origin-left scale-x-0 transition-transform duration-500 ease-out group-hover:scale-x-100" />
+                <div className="absolute inset-0 bg-gradient-to-t from-[#062454]/35 via-transparent to-transparent opacity-0 transition-opacity duration-500 group-hover:opacity-100" />
+                <span className="absolute bottom-0 left-0 h-[3px] w-full bg-[#00b594] origin-left scale-x-0 transition-transform duration-500 ease-out group-hover:scale-x-100" />
               </div>
 
               {/* Info */}
               <div className="px-4 pt-3 pb-4 text-center">
-                <h3 className="text-[16px] font-bold text-[#041e42] leading-tight transition-colors duration-300 group-hover:text-[#fd5b08]">
+                <h3 className="text-[16px] font-bold text-[#062454] leading-tight transition-colors duration-300 group-hover:text-[#00b594]">
                   {m.name}
                 </h3>
                 <p className="text-[13px] text-[#6b7280] mt-1">{m.role}</p>
@@ -153,7 +154,7 @@ export default function Team() {
                       transition={{ duration: 0.35, delay: 0.3 + i * 0.05 }}
                       whileHover={{ y: -3 }}
                       whileTap={{ scale: 0.9 }}
-                      className="w-[34px] h-[34px] rounded-full bg-[#f1f4f8] text-[#041e42] flex items-center justify-center transition-colors duration-300 hover:bg-[#fd5b08] hover:text-white"
+                      className="w-[34px] h-[34px] rounded-full bg-[#f1f4f8] text-[#062454] flex items-center justify-center transition-colors duration-300 hover:bg-[#00b594] hover:text-white"
                     >
                       <Icon size={14} />
                     </motion.a>

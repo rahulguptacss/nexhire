@@ -3,7 +3,7 @@
 import React, { useState, useEffect, useRef } from 'react';
 
 import { Star } from 'lucide-react';
-import { sections } from '../../types';
+import { sections, TestimonialsSectionData, StatsSectionData } from '../../types';
 import { motion, AnimatePresence, useInView } from 'framer-motion';
 
 function AnimatedCounter({ value }: { value: string }) {
@@ -45,9 +45,11 @@ function AnimatedCounter({ value }: { value: string }) {
   );
 }
 
-export default function Testimonials() {
-  const { subtitle, title_line1, title_highlight, reviews } = sections.testimonials;
-  const { items: statItems } = sections.stats;
+export default function Testimonials({ data, statsData }: { data?: TestimonialsSectionData; statsData?: StatsSectionData } = {}) {
+  const content = data || sections.testimonials;
+  const { subtitle, title_line1, title_highlight, reviews } = content;
+  const statsContent = statsData || sections.stats;
+  const { items: statItems } = statsContent;
 
   const [currentSlide, setCurrentSlide] = useState(0);
 
@@ -60,7 +62,7 @@ export default function Testimonials() {
   }, [reviews]);
 
   return (
-    <section className="bg-[#041e42] text-white pt-12 pb-10 sm:pt-14 sm:pb-12 relative overflow-hidden">
+    <section id="testimonials" className="bg-[#062454] text-white pt-12 pb-10 sm:pt-14 sm:pb-12 relative overflow-hidden scroll-mt-20">
       {/* Background graphic - Radial patterns */}
       <div className="absolute inset-0 opacity-[0.05] z-0 pointer-events-none" style={{ backgroundImage: 'radial-gradient(circle, #ffffff 1px, transparent 1px)', backgroundSize: '24px 24px' }}></div>
       <div className="absolute top-[-20%] left-[-10%] w-[500px] h-[500px] rounded-full border-[40px] border-white/5 z-0 pointer-events-none"></div>
@@ -78,11 +80,11 @@ export default function Testimonials() {
             className="flex flex-col justify-center"
           >
             <div className="flex items-center gap-2 mb-4">
-              <div className="w-[6px] h-[6px] rounded-full bg-[#fd5b08]"></div>
+              <div className="w-[6px] h-[6px] rounded-full bg-[#00b594]"></div>
               <span className="text-gray-300 font-bold uppercase tracking-widest text-[13px]">{subtitle}</span>
             </div>
             <h2 className="text-[34px] md:text-[46px] font-black leading-[1.1] text-white max-w-xl tracking-tight">
-              {title_line1} <span className="text-[#fd5b08]">{title_highlight}</span>
+              {title_line1} <span className="text-[#00b594]">{title_highlight}</span>
             </h2>
           </motion.div>
 
@@ -100,7 +102,7 @@ export default function Testimonials() {
                 <div>
                   <div className="flex gap-1 mb-6">
                     {[...Array(reviews[currentSlide].rating || 5)].map((_, i) => (
-                      <Star key={i} size={22} fill="#fd5b08" className="text-[#fd5b08]" />
+                      <Star key={i} size={22} fill="#00b594" className="text-[#00b594]" />
                     ))}
                   </div>
                   
@@ -122,7 +124,7 @@ export default function Testimonials() {
                          )}
                       </div>
                       {/* Quote Icon Badge */}
-                      <div className="absolute -bottom-1 -right-1 w-6 h-6 bg-[#fd5b08] rounded-full flex items-center justify-center border-2 border-[#041e42]">
+                      <div className="absolute -bottom-1 -right-1 w-6 h-6 bg-[#00b594] rounded-full flex items-center justify-center border-2 border-[#062454]">
                         <svg width="10" height="10" viewBox="0 0 24 24" fill="white" xmlns="http://www.w3.org/2000/svg">
                           <path d="M14 17H17L19 13V7H13V13H16L14 17ZM6 17H9L11 13V7H5V13H8L6 17Z" />
                         </svg>
@@ -141,7 +143,7 @@ export default function Testimonials() {
                         key={i}
                         onClick={() => setCurrentSlide(i)}
                         className={`h-[8px] rounded-full transition-all duration-300 ${
-                          currentSlide === i ? 'w-5 bg-[#fd5b08]' : 'w-[8px] bg-white/20 hover:bg-white/40'
+                          currentSlide === i ? 'w-5 bg-[#00b594]' : 'w-[8px] bg-white/20 hover:bg-white/40'
                         }`}
                         aria-label={`Go to slide ${i + 1}`}
                       />

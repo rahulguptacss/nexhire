@@ -3,7 +3,7 @@
 import React, { useState } from 'react';
 import { motion, AnimatePresence, MotionConfig, type Variants } from 'framer-motion';
 import { ChevronDown } from 'lucide-react';
-import { sections } from '../../types';
+import { sections, FaqSectionData } from '../../types';
 
 interface FaqItem {
   question: string;
@@ -22,13 +22,14 @@ const stagger: Variants = {
   show: { transition: { staggerChildren: 0.07, delayChildren: 0.1 } },
 };
 
-export default function Faq() {
-  const { subtitle, title_line1, title_highlight, description, image, items } = (sections as any).faq;
+export default function Faq({ data }: { data?: FaqSectionData } = {}) {
+  const content = data || sections.faq;
+  const { subtitle, title_line1, title_highlight, description, image, items } = content;
   const [open, setOpen] = useState<number | null>(0);
 
   return (
     <MotionConfig reducedMotion="user">
-      <section className="py-14 lg:py-16 bg-white overflow-hidden">
+      <section id="faq" className="py-14 lg:py-16 bg-white overflow-hidden scroll-mt-20">
         <div className="container mx-auto px-4 md:px-8 max-w-[1300px]">
           {/* Header */}
           <motion.div
@@ -39,13 +40,13 @@ export default function Faq() {
             className="text-center max-w-[680px] mx-auto mb-10"
           >
             <motion.div variants={fadeUp} className="flex items-center justify-center gap-3 mb-3">
-              <span className="w-[40px] h-[2px] bg-[#fd5b08]" />
-              <span className="text-[#041e42] font-bold text-[14px] uppercase tracking-[2px]">{subtitle}</span>
-              <span className="w-[40px] h-[2px] bg-[#fd5b08]" />
+              <span className="w-[40px] h-[2px] bg-[#00b594]" />
+              <span className="text-[#062454] font-bold text-[14px] uppercase tracking-[2px]">{subtitle}</span>
+              <span className="w-[40px] h-[2px] bg-[#00b594]" />
             </motion.div>
-            <motion.h2 variants={fadeUp} className="text-[32px] md:text-[42px] font-black text-[#041e42] leading-tight mb-3">
+            <motion.h2 variants={fadeUp} className="text-[32px] md:text-[42px] font-black text-[#062454] leading-tight mb-3">
               {title_line1}
-              <span className="text-[#fd5b08]">{title_highlight}</span>
+              <span className="text-[#00b594]">{title_highlight}</span>
             </motion.h2>
             <motion.p variants={fadeUp} className="text-[#5e6a7c] text-[15px] leading-relaxed">
               {description}
@@ -89,8 +90,8 @@ export default function Faq() {
                   variants={fadeUp}
                   className={`rounded-[14px] border transition-colors duration-300 ${
                     isOpen
-                      ? 'border-[#fd5b08]/40 bg-[#fff8f3] shadow-[0_10px_30px_rgba(253,91,8,0.08)]'
-                      : 'border-[#e8ecf2] bg-[#f6f8fb] hover:border-[#fd5b08]/30'
+                      ? 'border-[#00b594] bg-[#e6f8f5] shadow-[0_10px_30px_rgba(0,181,148,0.1)]'
+                      : 'border-[#e8ecf2] bg-[#f8fafc] hover:border-[#00b594]/30'
                   }`}
                 >
                   <h3>
@@ -104,14 +105,14 @@ export default function Faq() {
                     >
                       <span
                         className={`shrink-0 w-9 h-9 rounded-full flex items-center justify-center text-[13px] font-bold transition-colors duration-300 ${
-                          isOpen ? 'bg-[#fd5b08] text-white' : 'bg-[#e6ebf2] text-[#041e42]'
+                          isOpen ? 'bg-[#00b594] text-white' : 'bg-[#e6ebf2] text-[#062454]'
                         }`}
                       >
                         {num}
                       </span>
                       <span
                         className={`flex-1 text-[15px] md:text-[16px] font-bold transition-colors duration-300 ${
-                          isOpen ? 'text-[#fd5b08]' : 'text-[#041e42]'
+                          isOpen ? 'text-[#00b594]' : 'text-[#062454]'
                         }`}
                       >
                         {item.question}
@@ -119,7 +120,7 @@ export default function Faq() {
                       <ChevronDown
                         size={20}
                         className={`shrink-0 transition-transform duration-300 ${
-                          isOpen ? 'rotate-180 text-[#fd5b08]' : 'text-[#041e42]'
+                          isOpen ? 'rotate-180 text-[#00b594]' : 'text-[#062454]'
                         }`}
                       />
                     </button>

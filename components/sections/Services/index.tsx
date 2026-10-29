@@ -1,13 +1,13 @@
 "use client";
 
 import React from 'react';
-import Link from 'next/link';
 import { Briefcase, Users, GraduationCap, FileCheck, Layers, UserCheck, Monitor, ClipboardCheck, ArrowRight } from 'lucide-react';
 import { motion } from 'framer-motion';
-import { sections } from '../../types';
+import { sections, ServicesSectionData } from '../../types';
 
-export default function Services({ limit }: { limit?: number } = {}) {
-  const { subtitle, title_line1, title_highlight, description, items } = sections.services;
+export default function Services({ data, limit }: { data?: ServicesSectionData; limit?: number } = {}) {
+  const content = data || sections.services;
+  const { subtitle, title_line1, title_highlight, description, items, inquire_text } = content;
   
   const displayItems = limit ? items.slice(0, limit) : items;
 
@@ -26,7 +26,7 @@ export default function Services({ limit }: { limit?: number } = {}) {
   };
 
   return (
-    <section className="py-10 md:py-12 bg-[#f8f9fa] relative overflow-hidden">
+    <section id="services" className="py-10 md:py-12 bg-[#f8f9fa] relative overflow-hidden scroll-mt-20">
       {/* Background Decor: Large Circle Left */}
       <div className="absolute top-[20%] left-[-100px] w-[300px] h-[300px] rounded-full bg-[#f0f4f8] pointer-events-none hidden lg:block"></div>
       
@@ -46,13 +46,13 @@ export default function Services({ limit }: { limit?: number } = {}) {
           className="text-center mb-14"
         >
           <div className="flex justify-center items-center gap-3 mb-4">
-            <div className="w-[40px] h-[1.5px] bg-[#041e42]"></div>
-            <span className="text-[#041e42] font-bold uppercase tracking-[0.2em] text-[13px]">{subtitle}</span>
-            <div className="w-[40px] h-[1.5px] bg-[#041e42]"></div>
+            <div className="w-[40px] h-[1.5px] bg-[#062454]"></div>
+            <span className="text-[#062454] font-bold uppercase tracking-[0.2em] text-[13px]">{subtitle}</span>
+            <div className="w-[40px] h-[1.5px] bg-[#062454]"></div>
           </div>
           
-          <h2 className="text-[34px] md:text-[46px] font-black text-[#041e42] leading-[1.1] mb-4 tracking-tight">
-            {title_line1} <span className="text-[#fd5b08]">{title_highlight}</span>
+          <h2 className="text-[22px] sm:text-[28px] md:text-[32px] lg:text-[35px] xl:text-[40px] font-black text-[#062454] leading-[1.2] mb-4 tracking-tight lg:whitespace-nowrap">
+            {title_line1} <span className="text-[#00b594]">{title_highlight}</span>
           </h2>
           
           <p className="text-[#5e6a7c] max-w-2xl mx-auto text-[16px] md:text-[17px] leading-relaxed">
@@ -68,13 +68,13 @@ export default function Services({ limit }: { limit?: number } = {}) {
               whileInView={{ opacity: 1, y: 0 }}
               viewport={{ once: true }}
               transition={{ duration: 0.5, delay: index * 0.05 }}
-              className="bg-white rounded-[20px] p-7 group hover:bg-[#041e42] hover:-translate-y-2 transition-all duration-300 shadow-[0_4px_20px_rgba(0,0,0,0.03)] hover:shadow-[0_8px_30px_rgba(0,0,0,0.08)] flex flex-col"
+              className="bg-white rounded-[20px] p-7 group hover:bg-[#062454] hover:-translate-y-2 transition-all duration-300 shadow-[0_4px_20px_rgba(0,0,0,0.03)] hover:shadow-[0_8px_30px_rgba(0,0,0,0.08)] flex flex-col"
             >
-              <div className="w-[60px] h-[60px] rounded-full bg-[#fff0e6] text-[#fd5b08] group-hover:bg-white flex items-center justify-center mb-6 transition-colors duration-300">
+              <div className="w-[60px] h-[60px] rounded-full bg-[#e6f8f5] text-[#00b594] group-hover:bg-white flex items-center justify-center mb-6 transition-colors duration-300">
                 {renderIcon(item.icon)}
               </div>
               
-              <h3 className="text-[19px] font-bold text-[#041e42] group-hover:text-white mb-3 leading-tight transition-colors duration-300">
+              <h3 className="text-[19px] font-bold text-[#062454] group-hover:text-white mb-3 leading-tight transition-colors duration-300">
                 {item.title}
               </h3>
               
@@ -82,9 +82,9 @@ export default function Services({ limit }: { limit?: number } = {}) {
                 {item.description}
               </p>
               
-              <Link href={item.link || '#'} className="inline-flex items-center gap-2 text-[#fd5b08] group-hover:text-white font-bold text-[14px] hover:gap-3 transition-all duration-300">
-                Read More <ArrowRight size={16} strokeWidth={2.5} />
-              </Link>
+              <a href={item.link || '#contact'} className="inline-flex items-center gap-2 text-[#00b594] group-hover:text-white font-bold text-[14px] hover:gap-3 transition-all duration-300">
+                {inquire_text || "Inquire Now"} <ArrowRight size={16} strokeWidth={2.5} />
+              </a>
             </motion.div>
           ))}
         </div>

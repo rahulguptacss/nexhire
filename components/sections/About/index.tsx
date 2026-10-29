@@ -4,13 +4,14 @@ import React from 'react';
 import Link from 'next/link';
 import { ArrowRight, ArrowUpRight } from 'lucide-react';
 import { motion } from 'framer-motion';
-import { sections } from '../../types';
+import { sections, AboutSectionData } from '../../types';
 
-export default function About({ hideButton = false }: { hideButton?: boolean }) {
-  const { title, description, image1, image2, button, badge_text } = sections.about;
+export default function About({ data, hideButton = false }: { data?: AboutSectionData; hideButton?: boolean } = {}) {
+  const content = data || sections.about;
+  const { title, description, image1, image1_alt, image2, image2_alt, button, badge_text } = content;
 
   return (
-    <section className="pt-10 pb-20 lg:pt-12 lg:pb-24 bg-[#f4f5f7] overflow-hidden">
+    <section id="about" className="pt-10 pb-20 lg:pt-12 lg:pb-24 bg-[#f4f5f7] overflow-hidden scroll-mt-20">
       <div className="container mx-auto px-4 md:px-8">
         <div className="flex flex-col lg:flex-row gap-8 lg:gap-8">
           
@@ -23,14 +24,18 @@ export default function About({ hideButton = false }: { hideButton?: boolean }) 
             className="w-full lg:w-[46%] flex flex-col gap-5 lg:gap-4"
           >
             <div className="bg-white rounded-3xl p-6 lg:p-8 shadow-sm relative overflow-hidden group">
-              <div className="absolute top-0 left-0 w-1 h-full bg-[#fd5b08] transform -translate-y-full group-hover:translate-y-0 transition-transform duration-500"></div>
-              <h2 className="text-3xl md:text-4xl lg:text-[40px] font-semibold text-[#041e42] leading-[1.2] relative z-10">
+              <div className="absolute top-0 left-0 w-1 h-full bg-[#00b594] transform -translate-y-full group-hover:translate-y-0 transition-transform duration-500"></div>
+              <h2 className="text-3xl md:text-4xl lg:text-[40px] font-semibold text-[#062454] leading-[1.2] relative z-10">
                 {title}
               </h2>
             </div>
             
             <div className="rounded-[32px] overflow-hidden h-[300px] sm:h-[400px] lg:h-[440px] w-full group">
-              <img src={image1} alt="About Us Team 1" className="w-full h-full object-cover transition-transform duration-700 group-hover:scale-105" />
+              <img 
+                src={image1} 
+                alt={image1_alt || "About NexHire Executive Search"} 
+                className="w-full h-full object-cover transition-transform duration-700 group-hover:scale-105" 
+              />
             </div>
           </motion.div>
           
@@ -42,7 +47,11 @@ export default function About({ hideButton = false }: { hideButton?: boolean }) 
             transition={{ duration: 0.7, delay: 0.2, ease: "easeOut" }}
             className="w-full lg:w-[31%] rounded-[32px] overflow-hidden h-[400px] sm:h-[500px] lg:h-auto group"
           >
-            <img src={image2} alt="About Us Team 2" className="w-full h-full object-cover transition-transform duration-700 group-hover:scale-105" />
+            <img 
+              src={image2} 
+              alt={image2_alt || "About NexHire Global Talent Team"} 
+              className="w-full h-full object-cover transition-transform duration-700 group-hover:scale-105" 
+            />
           </motion.div>
           
           {/* Right Column */}
@@ -57,18 +66,18 @@ export default function About({ hideButton = false }: { hideButton?: boolean }) 
               <div className="relative w-40 h-40 lg:w-44 lg:h-44 flex items-center justify-center group cursor-pointer">
                 <svg className="absolute w-full h-full animate-[spin_20s_linear_infinite]" viewBox="0 0 100 100">
                   {/* Outer solid circle */}
-                  <circle cx="50" cy="50" r="46" stroke="#041e42" strokeWidth="1.5" fill="none" className="transition-colors duration-300 group-hover:stroke-[#fd5b08]" />
+                  <circle cx="50" cy="50" r="46" stroke="#062454" strokeWidth="1.5" fill="none" className="transition-colors duration-300 group-hover:stroke-[#00b594]" />
                   
                   {/* Invisible path for text */}
                   <path id="textPath" d="M 50, 50 m -34, 0 a 34,34 0 1,1 68,0 a 34,34 0 1,1 -68,0" fill="none" />
                   
                   {/* Text spanning the entire circle perfectly */}
-                  <text className="text-[12px] font-bold uppercase fill-[#041e42] transition-colors duration-300 group-hover:fill-[#fd5b08]" style={{ letterSpacing: '2px' }}>
+                  <text className="text-[12px] font-bold uppercase fill-[#062454] transition-colors duration-300 group-hover:fill-[#00b594]" style={{ letterSpacing: '2px' }}>
                     <textPath href="#textPath" startOffset="0%" textLength="213" lengthAdjust="spacing">{badge_text}</textPath>
                   </text>
                 </svg>
                 <div className="bg-[#f4f5f7] rounded-full p-2 transition-transform duration-300 group-hover:scale-110">
-                  <ArrowUpRight size={40} strokeWidth={1.5} className="text-[#041e42] transition-colors duration-300 group-hover:text-[#fd5b08]" />
+                  <ArrowUpRight size={40} strokeWidth={1.5} className="text-[#062454] transition-colors duration-300 group-hover:text-[#00b594]" />
                 </div>
               </div>
             </div>
@@ -79,13 +88,13 @@ export default function About({ hideButton = false }: { hideButton?: boolean }) 
                 dangerouslySetInnerHTML={{ __html: description }} 
               />
               
-              {!hideButton && (
+              {!hideButton && button && (
                 <Link 
-                  href={button.href} 
-                  className="group/btn bg-[#fd5b08] text-white pl-8 pr-2.5 py-2.5 rounded-full font-bold text-[15px] inline-flex items-center gap-6 hover:bg-orange-600 transition-all shadow-md hover:shadow-lg hover:-translate-y-1 w-fit"
+                  href={button.href || '#services'} 
+                  className="group/btn bg-[#00b594] text-white pl-8 pr-2.5 py-2.5 rounded-full font-bold text-[15px] inline-flex items-center gap-6 hover:bg-[#00977b] transition-all shadow-md hover:shadow-lg hover:-translate-y-1 w-fit"
                 >
                   {button.text} 
-                  <span className="bg-white text-[#041e42] rounded-full w-9 h-9 flex items-center justify-center transition-transform group-hover/btn:translate-x-1">
+                  <span className="bg-white text-[#062454] rounded-full w-9 h-9 flex items-center justify-center transition-transform group-hover/btn:translate-x-1">
                     <ArrowRight size={20} strokeWidth={2.5} />
                   </span>
                 </Link>

@@ -3,10 +3,11 @@
 import React from 'react';
 import { Target, Users, Zap, Award } from 'lucide-react';
 import { motion } from 'framer-motion';
-import { sections } from '../../types';
+import { sections, FeaturesSectionData } from '../../types';
 
-export default function Features() {
-  const { items } = sections.features;
+export default function Features({ data }: { data?: FeaturesSectionData } = {}) {
+  const content = data || sections.features;
+  const { items } = content;
 
   const renderIcon = (name: string) => {
     switch (name) {
@@ -33,7 +34,7 @@ export default function Features() {
   };
 
   return (
-    <section className="relative z-20 -mt-16 pb-0">
+    <section id="features" className="relative z-20 -mt-16 pb-0">
       {/* Seamless background connection to About section */}
       <div className="absolute top-16 left-0 right-0 bottom-0 bg-[#f4f5f7] -z-10" />
       
@@ -50,11 +51,11 @@ export default function Features() {
               variants={itemVariants}
               className="flex items-center gap-3 lg:gap-4 px-4 py-5 lg:px-5 lg:py-6 text-left border-b lg:border-b-0 lg:border-r border-gray-200 last:border-0 hover:bg-gray-50 transition-colors"
             >
-              <div className="w-14 h-14 shrink-0 bg-[#fd5b08] text-white rounded-full flex items-center justify-center">
+              <div className="w-14 h-14 shrink-0 bg-[#00b594] text-white rounded-full flex items-center justify-center">
                 {renderIcon(item.icon)}
               </div>
               <div className="flex flex-col">
-                <h3 className="text-base font-bold text-[#041e42] mb-1">{item.title}</h3>
+                <h3 className="text-base font-bold text-[#062454] mb-1">{item.title}</h3>
                 <p className="text-gray-500 text-xs md:text-sm leading-tight">{item.description}</p>
               </div>
             </motion.div>
